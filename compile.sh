@@ -1,7 +1,6 @@
 #!/bin/bash
 source tools
 
-#@override
 VERSION=0.1-SNAPSHOT
 
 #IFS=$'\0'

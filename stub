@@ -1,5 +1,3 @@
-IFS=$'\0'
-
 usage() {
     cat << EOF
 $(basename $0) [--help] [--version] [--logfile <path>] [--verbose|v] arg1 ...
@@ -41,5 +39,3 @@ log() {
         echo $@ >> $logfile ; else
         echo log: $@ >> $logfile ; fi
 }
-
-# main
