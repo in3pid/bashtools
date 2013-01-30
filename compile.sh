@@ -3,8 +3,6 @@ source tools
 
 VERSION=0.1-SNAPSHOT
 
-#IFS=$'\0'
-
 version() {
     echo "$(basename $0)-$VERSION"
 }
@@ -24,23 +22,39 @@ EOF
 # global state
 
 input=/dev/stdin
-output=/def/stdout
-
-verbose=0
+output=/dev/stdout
 logfile=/dev/stderr
+verbose=0
+
+# parse arguments
 
 while (( $# > 0 )); do
     case $1 in
-        --help) usage; exit ;;
-        --version) version; exit ;;
-        --verbose|-v) verbose=1; shift ;;
-        --logfile) logfile=$2; shift 2 ;;
-        --input) input=$2; shift 2 ;;
-        --output) output=$2; shift 2 ;;
-        --) shift; break ;;
+        --help)
+            usage
+            exit ;;
+        --version)
+            version
+            exit ;;
+        --verbose|-v)
+            verbose=1
+            shift ;;
+        --logfile)
+            logfile=$2
+            shift 2 ;;
+        --input)
+            input=$2
+            shift 2 ;;
+        --output)
+            output=$2
+            shift 2 ;;
+        --) shift
+            args=("${args[@]}" "$@")
+            break ;;
         *) args=("${args[@]}" "$1"); shift;
     esac; done
-args=("${args[@]}" "$@")
+
+# main
 
 mapfile -t lines < $input
 for line in "${lines[@]}"; do
