@@ -24,7 +24,6 @@ EOF
 input=/dev/stdin
 output=/dev/stdout
 logfile=/dev/stderr
-verbose=0
 
 # parse arguments
 
