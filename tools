@@ -4,7 +4,6 @@ infix() {
         echo -n "$1${!i}"; done
 }
 
-
 map() {
     for (( i = 2; i <= $#; i++ )); do
         echo "$($1 ${!i})"; done
@@ -16,12 +15,11 @@ filter() {
             echo "${!i}"; fi; done
 }
 
-
 reduce() {
     local f=$1 r=$2 ; shift 2
     for elt in $@; do
         r=$($f $r $elt); done
-    echo $r
+    echo "$r"
 }
 
 
@@ -33,6 +31,10 @@ anon() {
 # predicates
 
 odd_pr() { (( $1 % 2 == 1 )); }
+
+# monary operators
+
+inc() { echo $(( $1 + 1 )); }
 
 # binary operators
 
