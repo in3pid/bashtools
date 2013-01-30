@@ -1,8 +1,6 @@
 #!/bin/bash
 
-IFS=\000
-
-VERSION=0.1-SNAPSHOT
+IFS=$'\0'
 
 usage() {
     cat << EOF
@@ -14,9 +12,7 @@ $(basename $0) [--help] [--version] [--logfile <path>] [--verbose|v] arg1 ...
 EOF
 }
 
-version() {
-    echo $(basename $0) $VERSION
-}
+version() { echo $(basename $0)-${VERSION:=0.1-SNAPSHOT}; }
 
 # global state
 
